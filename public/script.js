@@ -16,9 +16,16 @@ var addItem = function (item) {
 var clearCart = function () {
   // TODO: Write a function that clears the cart ;-)
 }
-
+  //  hide/show the shopping cart!
 $('.view-cart').on('click', function () {
-  // TODO: hide/show the shopping cart!
+  $(".shopping-cart").css("display",function (index,oldVal)
+  {
+    if(oldVal==="none")
+      return "block";
+    else
+      return "none";
+    
+  })
 });
 
 $('.add-to-cart').on('click', function () {
