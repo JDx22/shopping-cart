@@ -10,8 +10,8 @@ var updateCart = function () {
   var i=0, cartTotal=0;
   for (i=0;i<cart.length;i++)
   {
-    $(".cart-list").append('<p> '+cart[i]['name']+' - '+cart[i]['price']+'$</p>');
-    cartTotal+=cart[i]['price'];
+    $(".cart-list").append('<p> '+cart[i]['name']+' - '+cart[i]['price']+'$ x'+cart[i].quantity+'</p>');
+    cartTotal+=cart[i]['price']*cart[i].quantity;
   }
   
   var $total=$(".shopping-cart  .total") ;
@@ -23,8 +23,12 @@ var updateCart = function () {
 var addItem = function (item) {
   // TODO: Write this function. Remember this function has nothing to do with display. 
   // It simply is for adding an item to the cart array, no HTML involved - honest ;-)
-  cart.push(item);
-
+  var i=0;
+  for (;i<cart.length && cart[i].name!==item.name;i++);
+  if (i===cart.length)
+    cart.push( {name: item.name, price: item.price , quantity: 1 } );
+  else //incase item already on cart 
+    cart[i].quantity++;
 }
 
 var clearCart = function () {
