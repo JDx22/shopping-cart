@@ -11,7 +11,9 @@ body {
   box-shadow: 2px 2px 2px #B3B3B3;
   margin: 20px;
 }
-
+.add-item-page{
+  margin-top: 70px;
+}
 .pricebox {
   height: 50px;
   width: 100px;
@@ -95,7 +97,9 @@ body {
   text-align: center;
   font-weight: bold;
 }
-
+#shopping-cart-page{
+  display: block;
+}
 .show {
   display: block;
 }

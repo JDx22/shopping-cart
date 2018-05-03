@@ -1,6 +1,14 @@
 // an array with all of our cart items
 var cart = [];
+var itemsForSell=[
+  {name: "glass" ,price: 68 ,url: 'http://ecx.images-amazon.com/images/I/31AOX24ATKL.jpg' },
+  {name: "pencils" ,price: 3 ,url: 'http://ecx.images-amazon.com/images/I/51YFEe%2BCYbL.jpg' },
+  {name: "kinfolk",price: 21 ,url: 'http://ecx.images-amazon.com/images/I/41m0VhULItL.jpg'},
+  {name: "book",price: 25 ,url: 'http://ecx.images-amazon.com/images/I/41uyfSEwr0L.jpg'},
+  {name: "pipe",price: 124,url: 'http://ecx.images-amazon.com/images/I/41TvbxcZpZL.jpg' },
+  {name: "stool" ,price: 92 ,url: 'http://ecx.images-amazon.com/images/I/41NZO5GovmL.jpg'},
 
+];
 
 var updateCart = function () {
   // TODO: Write this function. In this function we render the page.
@@ -59,18 +67,62 @@ $('.cart-list').on('click','.remove-button',function(){
   updateCart();
 
 })
-$('.add-to-cart').on('click', function () {
+
+function addToCartClickHandler(  _this) {
   // TODO: get the "item" object from the page
-  var $item = $(this).closest(".item");
+  var $item = $( _this).closest(".item");
   var item = {  name: $item.data().name, 
                 price: $item.data().price                 };
   addItem(item);
   updateCart();
-});
+};
 
 $('.clear-cart').on('click', function () {
   clearCart();
 });
 
+function renderItems()
+{
+  //ans will be the concated 
+  //string containing all the html (rows and columns),
+  // after the loop I will append it to the shopping-cart-container class
+  var i,stringToRender="";
+  for(i=0;i<itemsForSell.length; i++)
+  {
+
+    if (i%3===0 )
+      stringToRender+='<row>' 
+    
+    stringToRender+='<div class="col-md-4">\
+      <div class="card-container">\
+        <div class="card item" data-name="'+itemsForSell[i].name+'" data-price="'+itemsForSell[i].price+'">\
+          <div class="pricebox">\
+            <p class="price"> $'+itemsForSell[i].price+'</p>\
+          </div>\
+          <div class="buybox">\
+            <p class="add-to-cart" onclick="addToCartClickHandler(this)"> ADD TO CART </p>\
+          </div>\
+          <div class="card-inner">\
+            <img src="'+itemsForSell[i].url+'" class="proimage">\
+          </div>\
+        </div>\
+      </div>\
+    </div>';
+  if(i%3===2)
+    stringToRender+='</row>';
+
+    
+  }
+  console.log(stringToRender);
+  $(".shopping-cart-items").empty();
+  $(".shopping-cart-items").append(stringToRender);
+  
+
+}
+
 // update the cart as soon as the page loads!
 updateCart();
+
+//render items on the grid
+renderItems();
+
