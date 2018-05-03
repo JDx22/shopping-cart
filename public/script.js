@@ -22,9 +22,13 @@ var updateCart = function () {
     cartTotal+=cart[i]['price']*cart[i].quantity;
   }
   
+  localStorage.clear();
+  localStorage.setItem('cart',JSON.stringify(cart));
+  
+  
   var $total=$(".shopping-cart  .total") ;
   $total.empty();
-  $total.append(cartTotal)
+  $total.append(cartTotal);
 }
 
 
@@ -146,6 +150,18 @@ $(".add-to-stock").on("click",function(){
   $(this).closest('ul').find('li').removeClass("active");
   $(this).closest("li").addClass("active");
 })
+
+function loadCart()
+{
+  var oldCart=localStorage.getItem('cart');
+  if (oldCart!==null)
+  {   
+     cart= JSON.parse(oldCart);
+  }
+}
+//loading cart items from localStorge 
+//, the first time user comes back to the page
+loadCart();
 // update the cart as soon as the page loads!
 updateCart();
 
