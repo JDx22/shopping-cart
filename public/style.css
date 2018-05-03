@@ -97,7 +97,7 @@ body {
   text-align: center;
   font-weight: bold;
 }
-#shopping-cart-page{
+.shopping-cart-page{
   display: block;
 }
 .show {
@@ -106,4 +106,7 @@ body {
 
 .clear-cart {
   width: 100%;
+}
+.add-item-page{
+  display: none;
 }

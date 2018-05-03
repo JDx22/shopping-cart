@@ -120,6 +120,32 @@ function renderItems()
 
 }
 
+$(".shop-front").on("click",function(){
+  $(".shopping-cart-page").css("display",function (index,oldVal)
+  { 
+    return "block";
+  });
+
+  $(".add-item-page").css("display",function(index,oldVal){
+    return "none";
+  });
+
+  $(this).closest('ul').find('li').removeClass("active");
+  $(this).closest("li").addClass("active");
+
+})
+$(".add-to-stock").on("click",function(){
+  $(".shopping-cart-page").css("display",function (index,oldVal)
+  { 
+    return "none";
+  });
+
+  $(".add-item-page").css("display",function(index,oldVal){
+    return "block";
+  });
+  $(this).closest('ul').find('li').removeClass("active");
+  $(this).closest("li").addClass("active");
+})
 // update the cart as soon as the page loads!
 updateCart();
 
