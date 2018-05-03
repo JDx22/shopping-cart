@@ -22,7 +22,6 @@ var updateCart = function () {
     cartTotal+=cart[i]['price']*cart[i].quantity;
   }
   
-  localStorage.clear();
   localStorage.setItem('cart',JSON.stringify(cart));
   
   
